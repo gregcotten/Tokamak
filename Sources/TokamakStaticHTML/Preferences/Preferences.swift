@@ -35,3 +35,14 @@ public struct HTMLMetaPreferenceKey: PreferenceKey {
     value += nextValue()
   }
 }
+
+public struct HTMLHeadLinkPreferenceKey: PreferenceKey {
+  public static var defaultValue: [HTMLHeadLink] = []
+
+  public static func reduce(
+    value: inout [HTMLHeadLink],
+    nextValue: () -> [HTMLHeadLink]
+  ) {
+    value += nextValue()
+  }
+}

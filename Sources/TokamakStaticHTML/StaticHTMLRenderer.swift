@@ -86,12 +86,19 @@ public final class StaticHTMLRenderer: Renderer {
     reconciler?.preferenceStore.value(forKey: HTMLMetaPreferenceKey.self).value ?? []
   }
 
+  var links: [HTMLHeadLink] {
+    reconciler?.preferenceStore.value(forKey: HTMLHeadLinkPreferenceKey.self).value ?? []
+  }
+
   public func render(shouldSortAttributes: Bool = false) -> String {
     """
     <html>
     <head>
       <title>\(title)</title>\(
         !meta.isEmpty ? "\n  " + meta.map { $0.outerHTML() }.joined(separator: "\n  ") : ""
+      )
+      \(
+        !links.isEmpty ? "\n  " + links.map { $0.htmlLiteral }.joined(separator: "\n  ") : ""
       )
       <style>
         \(tokamakStyles)
