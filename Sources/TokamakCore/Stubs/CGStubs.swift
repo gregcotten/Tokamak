@@ -15,8 +15,11 @@
 //  Created by Max Desiatov on 08/04/2020.
 //
 
-import CoreFoundation
 import Foundation
+
+#if !os(WASI)
+  import CoreFoundation
+#endif
 
 extension CGPoint {
   func rotate(_ angle: Angle, around origin: Self) -> Self {
